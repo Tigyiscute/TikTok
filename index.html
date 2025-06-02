@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TikTokInstallerX</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #1f1f1f;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #ff0050;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      background: #2c2c2c;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+    }
+
+    #injectBtn {
+      background-color: #ff0050;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #injectBtn:hover {
+      background-color: #e10046;
+    }
+
+    .progress-container {
+      background-color: #333;
+      width: 100%;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #ff0050;
+      transition: width 0.3s ease;
+    }
+
+    /* Custom Popup Styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      background-color: #1e1e1e;
+      padding: 30px 20px;
+      border-radius: 14px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .popup-box h2 {
+      color: #00ff99;
+      margin-bottom: 10px;
+    }
+
+    .popup-box p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .popup-box button {
+      background-color: #ff0050;
+      border: none;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .popup-box button:hover {
+      background-color: #e10046;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/mWqwGZ9.png" alt="TikTok Logo" class="logo">
+    <h1>TikTokInstallerX</h1>
+    <p>This application mods your TikTok application!</p>
+    <ul>
+      <li>Sticker Comments</li>
+      <li>Voice Messages</li>
+    </ul>
+    <button id="injectBtn">Inject</button>
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <!-- Custom Popup -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h2>Injection Complete!</h2>
+      <p>Successfully Injected <b>TikTokMod.dylib</b> Into Files!</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const injectBtn = document.getElementById('injectBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const popupOverlay = document.getElementById('popupOverlay');
+
+    injectBtn.addEventListener('click', () => {
+      injectBtn.disabled = true;
+      progressContainer.style.display = "block";
+      let progress = 0;
+      const pauses = [21, 34, 47, 76, 87, 94, 98];
+
+      function updateProgress() {
+        if (pauses.includes(progress)) {
+          setTimeout(() => {
+            progress++;
+            progressBar.style.width = progress + "%";
+            updateProgress();
+          }, 700);
+        } else {
+          progress++;
+          progressBar.style.width = progress + "%";
+          if (progress < 100) {
+            setTimeout(updateProgress, 30);
+          } else {
+            showPopup();
+          }
+        }
+      }
+
+      updateProgress();
+    });
+
+    function showPopup() {
+      popupOverlay.style.display = "flex";
+    }
+
+    function closePopup() {
+      popupOverlay.style.display = "none";
+    }
+  </script>
+</body>
+</html>
